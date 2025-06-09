@@ -7,7 +7,7 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Продукция с использованием "{{ $material->name }}"</h2>
-            <a href="{{ route('materials.index') }}" class="btn btn-secondary">Назад к списку материалов</a>
+
         </div>
 
         @if ($products->isEmpty())
@@ -30,6 +30,7 @@
                 </tbody>
             </table>
         @endif
+        <a href="{{ route('materials.index') }}" class="btn btn-secondary">Назад к списку материалов</a>
     </div>
 
 @endsection
