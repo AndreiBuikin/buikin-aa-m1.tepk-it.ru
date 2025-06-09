@@ -22,9 +22,9 @@
                 <div class="d-flex justify-content-between ">
                     <div>
                         <div class="bigFont">{{$material->materialType->name}} | {{$material->name}}</div>
-                        <div>Минимальное количество: {{$material->minQuantity}}</div>
+                        <div>Минимальное количество: {{$material->quantityM}}</div>
                         <div>Количество на складе: {{$material->quantity}}</div>
-                        <div>Цена: {{$material->price}} {{$material->unit->name}} | {{$material->packageQuantity}}</div>
+                        <div>Цена: {{$material->price}} {{$material->unit->name}} | {{$material->quantityP}}</div>
                     </div>
                     <div class="bigFont">
                         {{$sumMaterialProducts[$material->id]}}

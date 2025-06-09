@@ -10,7 +10,7 @@ class Material extends Model
     public $timestamps = false;
     protected $fillable = [
         'name', 'material_type_id', 'price', 'quantity',
-        'minQuantity', 'packageQuantity', 'unit_id'
+        'quantityM', 'quantityP', 'unit_id'
     ];
 
     public function unit()
