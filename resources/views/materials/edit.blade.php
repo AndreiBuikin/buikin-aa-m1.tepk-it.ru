@@ -44,11 +44,11 @@
         </div>
         <div class="d-flex">
             <p>Минимальное количество</p>
-            <input type="number" min="0" step="1" name="minQuantity" value="{{ $material->minQuantity }}" required>
+            <input type="number" min="0" step="1" name="quantityM" value="{{ $material->quantityM }}" required>
         </div>
         <div class="d-flex">
             <p>Количество в упаковке</p>
-            <input type="number" min="0" step="0.01" name="packageQuantity" value="{{ $material->packageQuantity }}" required>
+            <input type="number" min="0" step="0.01" name="quantityP" value="{{ $material->quantityP }}" required>
         </div>
         <div class="d-flex">
             <p>Единица измерения</p>

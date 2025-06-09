@@ -42,11 +42,11 @@
         </div>
         <div class="d-flex">
             <p>Минимальное количество</p>
-            <input type="number" min="0" step="1" name="minQuantity" required>
+            <input type="number" min="0" step="1" name="quantityM" required>
         </div>
         <div class="d-flex">
             <p>Количество в упаковке</p>
-            <input type="number" min="0" step="0.01" name="packageQuantity" required>
+            <input type="number" min="0" step="0.01" name="quantityP" required>
         </div>
         <div class="d-flex">
             <p>Единица измерения</p>
