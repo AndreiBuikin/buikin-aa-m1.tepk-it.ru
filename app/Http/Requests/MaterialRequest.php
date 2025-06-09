@@ -26,8 +26,8 @@ class MaterialRequest extends FormRequest
             'material_type_id' => ['required', 'integer', 'exists:material_types,id'],
             'price' => ['required', 'numeric', 'min:0'],
             'quantity' => ['required', 'integer', 'min:0'],
-            'minQuantity' => ['required', 'integer', 'min:0'],
-            'packageQuantity' => ['required', 'numeric', 'min:0'],
+            'quantityM' => ['required', 'integer', 'min:0'],
+            'quantityP' => ['required', 'numeric', 'min:0'],
             'unit_id' => ['required', 'integer', 'exists:units,id'],
         ];
     }
