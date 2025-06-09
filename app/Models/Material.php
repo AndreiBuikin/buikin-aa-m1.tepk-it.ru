@@ -13,7 +13,6 @@ class Material extends Model
         'minQuantity', 'packageQuantity', 'unit_id'
     ];
 
-    // Связи
     public function unit()
     {
         return $this->belongsTo(Unit::class);

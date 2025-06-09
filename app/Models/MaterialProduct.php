@@ -10,7 +10,6 @@ class MaterialProduct extends Model
     public $timestamps = false;
     protected $fillable = ['material_id', 'product_id', 'quantity'];
 
-    // Связи
     public function material()
     {
         return $this->belongsTo(Material::class);

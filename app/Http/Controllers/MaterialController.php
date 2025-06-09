@@ -18,7 +18,7 @@ class MaterialController extends Controller
     {
         //
         $materials = Material::all();
-        // Подсчёт необходимого количества материала
+
         $sumMaterialProducts = [];
         foreach ($materials as $material) {
             $sumMaterialProducts[$material->id] = MaterialProduct::where('material_id', $material->id)->sum('quantity');
