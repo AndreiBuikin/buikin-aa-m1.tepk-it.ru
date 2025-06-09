@@ -16,11 +16,14 @@ class FuncController extends Controller
             $productType = ProductType::findOrFail($productTypeId);
             $materialType = MaterialType::findOrFail($materialTypeId);
 
+            // Поиск необходимого сырья для изготовления одной единицы продукции
             $rawPerProduct = $param1 * $param2 * $productType->coefficient;
 
+            // Потери сырья
             $lossPercent = $materialType->loss;
             $rawWithLoss = $rawPerProduct * (1 + $lossPercent / 100);
 
+            // Формула для нахождения максимального кол-ва продукции
             $productionCount = floor($availableMaterial / $rawWithLoss);
 
             return $productionCount >= 0 ? (int)$productionCount : 0;

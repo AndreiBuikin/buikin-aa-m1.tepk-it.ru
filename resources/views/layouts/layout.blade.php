@@ -14,11 +14,11 @@
 <header>
     <nav>
         <img src="{{asset('assets/images/obraz-plus.png')}}" width="50">
-        <a href="/materials">Материалы</a>
     </nav>
+    <a href="/materials">Материалы</a>
 </header>
 <main>@yield('content')</main>
-<footer></footer>
+<footer> Образ плюс (C) 2025. Все права защищены</footer>
 
 </body>
 </html>
