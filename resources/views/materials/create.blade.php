@@ -1,43 +1,64 @@
 @extends('layouts.layout')
 
-@section('title', 'Просмотр всего')
+@section('title', 'Добавление материала')
 
 @section('content')
 
     <div>
-        <a class="btn" href="{{route('materials.create')}}">Добавить материал</a>
+        <a class="btn" href="{{route('materials.index')}}">Назад</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
-    <div class="cards">
-
-        @foreach($materials as $material)
-
-            <div class="card">
-                <div class="d-flex justify-content-between ">
-                    <div>
-                        <div class="bigFont">{{$material->materialType->name}} | {{$material->name}}</div>
-                        <div>Минимальное количество: {{$material->minQuantity}}</div>
-                        <div>Количество на складе: {{$material->quantity}}</div>
-                        <div>Цена: {{$material->price}} {{$material->unit->name}} | {{$material->packageQuantity}}</div>
-                    </div>
-                    <div class="bigFont">
-                        {{$sumMaterialProducts[$material->id]}}
-                    </div>
-                </div>
-                <a  class="btn" href="{{ route('materials.edit', $material->id) }}">Редактировать</a>
-                <a  class="btn" href="{{ route('materials.show', $material->id) }}">Просмотр</a>
-            </div>
-
-        @endforeach
-
-    </div>
-
+    <form action="{{route('materials.store')}}" method="post">
+        @csrf
+        <div class="d-flex">
+            <p>Наименование материала</p>
+            <input type="text" name="name" required>
+        </div>
+        <div class="d-flex">
+            <p>Тип материала</p>
+            <select name="material_type_id" required>
+                @foreach($materialTypes as $materialType)
+                    <option value="{{$materialType->id}}">{{$materialType->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="d-flex">
+            <p>Цена единицы материала</p>
+            <input type="number" min="0" step="0.01" name="price" required>
+        </div>
+        <div class="d-flex">
+            <p>Количество на складе</p>
+            <input type="number" min="0" step="1" name="quantity" required>
+        </div>
+        <div class="d-flex">
+            <p>Минимальное количество</p>
+            <input type="number" min="0" step="1" name="minQuantity" required>
+        </div>
+        <div class="d-flex">
+            <p>Количество в упаковке</p>
+            <input type="number" min="0" step="0.01" name="packageQuantity" required>
+        </div>
+        <div class="d-flex">
+            <p>Единица измерения</p>
+            <select name="unit_id" required>
+                @foreach($units as $unit)
+                    <option value="{{$unit->id}}">{{$unit->name}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="d-flex">
+            <button type="submit" class="btn">Добавить</button>
+        </div>
+    </form>
 
 @endsection
-
