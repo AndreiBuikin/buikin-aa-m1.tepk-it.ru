@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    //
+    //66
     public $timestamps = false;
     protected $fillable = [
         'name', 'material_type_id', 'price', 'quantity',
