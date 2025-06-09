@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MaterialRequest;
+use App\Models\Material;
+use App\Models\MaterialProduct;
+use App\Models\MaterialType;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -12,6 +17,14 @@ class MaterialController extends Controller
     public function index()
     {
         //
+        $materials = Material::all();
+        // Подсчёт необходимого количества материала
+        $sumMaterialProducts = [];
+        foreach ($materials as $material) {
+            $sumMaterialProducts[$material->id] = MaterialProduct::where('material_id', $material->id)->sum('quantity');
+        }
+
+        return view('materials.index', compact('materials', 'sumMaterialProducts'));
     }
 
     /**
@@ -20,38 +33,55 @@ class MaterialController extends Controller
     public function create()
     {
         //
+        $units = Unit::all();
+        $materialTypes = MaterialType::all();
+        return view('materials.create', compact('units', 'materialTypes'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MaterialRequest $request)
     {
-        //
+        // Создаем материал
+        Material::create($request->validated());
+
+        // Перенаправляем обратно со статусом успеха
+        return redirect()->route('materials.index')->with('success', 'Материал успешно добавлен');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Material $material)
     {
-        //
+        // Загружаем продукты с информацией о количестве материала
+        $products = $material->productMaterials()
+            ->with('product')
+            ->get();
+
+        return view('materials.show', compact('material', 'products'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Material $material)
     {
-        //
+        $units = Unit::all();
+        $materialTypes = MaterialType::all();
+        return view('materials.edit', compact('material', 'units', 'materialTypes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MaterialRequest $request, Material $material)
     {
         //
+        $material->update($request->validated());
+        // Перенаправляем на страницу списка материалов с сообщением об успехе
+        return redirect()->route('materials.index')->with('success', 'Материал успешно обновлён');
     }
 
     /**

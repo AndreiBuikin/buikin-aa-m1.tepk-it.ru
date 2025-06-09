@@ -1,49 +1,45 @@
 @font-face {
-    font-family: "Segoe UI";
-    src: url("fonts/Constantia.ttf") format("truetype");
+    font-family: 'Constantia';
+    src: url('fonts/Constantia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 * {
-    padding: 0;
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
+    font-family: Constantia, sans-serif;
 }
-.main-background {
-    background: #FFFFFF;
-}
-.additional-background {
-    background: #F4E8D3;
-}
-.accent {
-    color: #67BA80;
-}
-.bigSize{
-    font-size: 1.3em;
-}
-.flex{
+
+.d-flex {
     display: flex;
 }
-.div85{
-    width: 85%;
+.justify-content-between {
+    justify-content: space-between;
 }
-.div15{
-    width: 15%;
+.bigFont {
+    font-size: 1.3em;
+    font-weight: bold;
 }
-.border{
+a {
+    text-decoration: none;
+    color: black;
+}
+.card {
     border: 1px solid black;
     padding: 20px;
+    margin: 20px;
 }
-.btn{
+.btn {
     display: inline-block;
-    padding: 10px;
-    margin: 10px 20px;
-    background-color: #F4E8D3;
-    color: #67BA80;
-    border-radius: 10px;
-}
-.warning{
-
-}
-main a{
     text-decoration: none;
-    color: #67BA80;
+    border: 1px solid black;
+    padding: 20px 10px;
+    margin: 20px;
+    background-color: #BFD6F6;
+}
+.alert {
+    margin: 20px;
+    padding: 20px;
+    color: white;
+}
+.alert-success, .alert-danger {
+    background-color: #405C73;
 }
